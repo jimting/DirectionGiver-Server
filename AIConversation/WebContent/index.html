@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<head>
+<meta charset="UTF-8">
+<title>來跟我對話吧</title>
+<script>
+$(document).ready(function()
+{
+	$("#ajaxbutton").click(function()
+	{
+		$('#result').text(" "); //清空result
+		$.ajax({
+			type:"POST",
+			url: "AIConversation",
+			data:
+			{
+				userInput:	$("#userInput").val()
+			},
+			dataType: "text",
+			success : function(response)
+			{
+				$("#result").append(response);
+			},
+			error:function()
+			{
+            	alert(xhr.status+"\n"+thrownError+"error");
+        	}
+		});
+	});
+});
+</script>
+<style>
+@font-face
+{
+	font-family:"Brush";
+	src: url("SentyBrush.otf") format('truetype');
+}
+div
+{
+	margin: 0px auto;
+}
+#block
+{
+	border-width:2px;
+	border-radius : 20px;
+	border-color : #dcdcdc;
+	border : outset;
+}
+#block:hover
+{
+	background-color:#dcdcdc;
+	border-color:#a9a9a9;
+	border : inset;
+}
+p,h4
+{
+	text-align: center;
+}
+#Bigtitle
+{
+	text-align: center;
+	font-family:"Brush";
+}
+</style>
+</head>
+<body>
+<h1 id="Bigtitle">對話測試</h1>
+<input type="text" id="userInput" placeholder="請輸入對話字串" class="form-control" />
+<input id = "ajaxbutton" type = "button" value = "Click" class="btn btn-primary btn-block"/>
+<p id="Bigcontent">AI對話測試</p>
+<div id="result"></div> <!-- 顯示Ajax結果 -->
+</body>
+</html>

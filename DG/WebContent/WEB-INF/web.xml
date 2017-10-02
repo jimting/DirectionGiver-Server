@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>HW5</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>DGGiver</servlet-name>
+    <servlet-class>ntou.jt.DGGiver</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DGGiver</servlet-name>
+    <url-pattern>/DGGiver</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DGNearBy</servlet-name>
+    <servlet-class>ntou.jt.DGNearBy</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DGNearBy</servlet-name>
+    <url-pattern>/DGNearBy</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>GetShopRatingServlet</servlet-name>
+    <servlet-class>ntou.jt.GetShopRatingServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetShopRatingServlet</servlet-name>
+    <url-pattern>/GetShopRating</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GetWeatherServlet</servlet-name>
+    <servlet-class>ntou.jt.GetWeatherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetWeatherServlet</servlet-name>
+    <url-pattern>/GetWeather</url-pattern>
+  </servlet-mapping>
+</web-app>

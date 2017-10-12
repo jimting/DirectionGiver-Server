@@ -57,6 +57,12 @@ NearByServlet
 
 將評論抓進資料庫
 
+2017/10/12更新
+
+新增商家推播
+
+Rating存取
+
 ----------
 
 UpdateUserLineServlet

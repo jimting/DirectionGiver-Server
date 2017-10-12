@@ -25,13 +25,21 @@
     <servlet-name>Hotel</servlet-name>
     <url-pattern>/HotelResult</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>GetWCServlet</servlet-name>
     <servlet-class>DG.GetWCServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>GetWCServlet</servlet-name>
     <url-pattern>/WCResult</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>GetShopInfoServlet</servlet-name>
+    <servlet-class>DG.GetShopInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetShopInfoServlet</servlet-name>
+    <url-pattern>/ShopInfoResult</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>result.jsp</welcome-file>

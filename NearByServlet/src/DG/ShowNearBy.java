@@ -21,6 +21,7 @@ public class ShowNearBy {
 	static Statement stmt2 = null;
 	static Statement stmt3 = null;
 	static Statement stmt4 = null;
+	static Statement stmt5 = null;
 	
 	static ResultSet rs = null;
 	static ResultSet rs2 = null;
@@ -179,7 +180,7 @@ public class ShowNearBy {
 			        placeID = jsonObj2.getString("place_id");
 			}else{
 				System.out.println("RETRY");
-				resent(shopName);
+				return getPlaceID(shopName);
 			}
        
 		} catch (JSONException e) {
@@ -217,7 +218,15 @@ public class ShowNearBy {
 			jsonObjTotal = new JSONObject(commentContent);
 			System.out.println(urlForComment);
 			JSONObject jsonObj2 = jsonObjTotal.getJSONObject("result");
-			
+			double averageRating = jsonObj2.getDouble("rating");
+			String deleteQuery = "DELETE FROM `rating` WHERE `RESTAURANT_ID`=" + restaurantID;
+			stmt3=con.createStatement();
+			stmt3.executeUpdate(deleteQuery);
+			String ratingQuery = "INSERT INTO `rating`(`RESTAURANT_ID`,`RESTAURANT_RATING`)VALUES(\"" + restaurantID + "\",\"" + averageRating + "\")";
+			System.out.println(ratingQuery);
+			stmt5=con.createStatement();
+			stmt5.executeUpdate(ratingQuery);
+			System.out.println(ratingQuery);
 			//抓到評論了
 			JSONArray jsonArr = jsonObj2.getJSONArray("reviews");
 			comments = jsonArr.toString();

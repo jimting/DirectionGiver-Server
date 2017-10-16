@@ -10,6 +10,8 @@ import java.sql.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+
 import com.google.gson.JsonArray;
 
 import com.google.gson.JsonParser;
@@ -105,7 +107,7 @@ public class ShowNearBy {
 				jsonObject2.put("NAME", rs2.getString("NAME"));
 				jsonObject2.put("ADDRESS",rs2.getString("ADDRESS"));
 				jsonObject2.put("DESCRIPTION","便利商店");
-				jsonObject2.put("CLASS","");
+				jsonObject2.put("CLASS","便利商店");
 				jsonObject2.put("OPENTIME","");
 				jsonObject2.put("PX", rs2.getString("PX"));
 				jsonObject2.put("PY", rs2.getString("PY"));
@@ -230,6 +232,7 @@ public class ShowNearBy {
 			//抓到評論了
 			JSONArray jsonArr = jsonObj2.getJSONArray("reviews");
 			comments = jsonArr.toString();
+			comments = comments.replace("in the last week", "一個禮拜前");
 			comments = comments.replace("a week ago", "一個禮拜前");
 			comments = comments.replace("2 weeks ago", "兩個禮拜前");
 			comments = comments.replace("3 weeks ago", "三個禮拜前");
@@ -268,21 +271,22 @@ public class ShowNearBy {
 				String athr = o.get(count).getAsJsonObject().get("author_name").getAsString();
 				String rating = o.get(count).getAsJsonObject().get("rating").getAsString();
 				String tme = o.get(count).getAsJsonObject().get("relative_time_description").getAsString();
+				System.out.println(cmt);
 				cmt = cmt.replace("\n", "");
-				
+		        cmt = cmt.replaceAll("[\\ud800\\udc00-\\udbff\\udfff\\ud800-\\udfff]", "");
 				System.out.println(cmt);
 				System.out.println(restaurantName);
 				System.out.println(athr);
 				System.out.println(rating);
 				System.out.println(tme);
+				
 				String checkQuery = "SELECT * FROM `comments` WHERE AUTHOR = \"" + athr + "\" AND COMMENT = \"" + cmt + "\"";
 				System.out.println(checkQuery);
 				rs4 = stmt4.executeQuery(checkQuery);
 				if(rs4.next()){
-					System.out.println("Hi");
+					System.out.println("此筆評論已經在資料庫了");
 				}else{
 				String commentQuery = "INSERT INTO `comments`(`RESTAURANT_ID`,`RESTAURANTNAME`,`ADDRESS`,`AUTHOR`,`RATING`,`COMMENT`,`TIME`)VALUES(\"" +restaurantID + "\",\"" + restaurantName + "\",\""+ address + "\",\"" + athr +"\",\""+ rating +"\",\""+ cmt +"\",\""+ tme +"\")";
-				System.out.println(commentQuery);
 				stmt4.executeUpdate(commentQuery);
 				}
 				System.out.println("-----------");
@@ -295,4 +299,5 @@ public class ShowNearBy {
 			e.printStackTrace();
 		}
 	}
+	
 }

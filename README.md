@@ -63,6 +63,14 @@ NearByServlet
 
 Rating存取
 
+2017/10/16更新
+
+新增表情符號修改讓評論可存入資料庫
+
+便利商店的商店分類從空白改為:"便利商店"
+
+請求GOOGLE PLACE API失敗時會自動重新丟請求
+
 ----------
 
 UpdateUserLineServlet

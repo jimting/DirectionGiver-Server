@@ -33,13 +33,37 @@
     <servlet-name>GetWCServlet</servlet-name>
     <url-pattern>/WCResult</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>GetShopInfoServlet</servlet-name>
     <servlet-class>DG.GetShopInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>GetShopInfoServlet</servlet-name>
     <url-pattern>/ShopInfoResult</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>NPCServlet</servlet-name>
+    <servlet-class>DG.NPCServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NPCServlet</servlet-name>
+    <url-pattern>/NPCResult</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SpeechServlet</servlet-name>
+    <servlet-class>DG.SpeechServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpeechServlet</servlet-name>
+    <url-pattern>/SpeechResult</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>GetRestaurantServlet</servlet-name>
+    <servlet-class>DG.GetRestaurantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetRestaurantServlet</servlet-name>
+    <url-pattern>/RestaurantResult</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>result.jsp</welcome-file>

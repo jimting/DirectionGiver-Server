@@ -13,13 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-/**
- * Servlet implementation class GetConServlet
- */
-@WebServlet("/GetConServlet")
-public class GetConServlet extends HttpServlet {
+@WebServlet("/GetRestaurantServlet")
+public class GetRestaurantServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
@@ -32,12 +29,12 @@ public class GetConServlet extends HttpServlet {
 		String leftBottomLng = test.getLbLng(longitude, latitude);
 		String leftBottomLat = test.getLbLat(longitude, latitude);
 		
-		ShowCon showCon = new ShowCon();
+		ShowRestaurant showRestaurant = new ShowRestaurant();
 		
 		JSONArray near = new JSONArray();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			near = showCon.show(leftBottomLng,leftBottomLat,rightTopLng,rightTopLat,longitude,latitude);	
+			near = showRestaurant.show(leftBottomLng,leftBottomLat,rightTopLng,rightTopLat,longitude,latitude);	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,6 +47,4 @@ public class GetConServlet extends HttpServlet {
 		}
 		writer.println(near);	
 	}
-
 }
-

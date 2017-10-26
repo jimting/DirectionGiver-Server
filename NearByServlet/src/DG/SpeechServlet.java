@@ -14,30 +14,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 /**
- * Servlet implementation class GetWCServlet
+ * Servlet implementation class SpeechServlet
  */
-@WebServlet("/GetWCServlet")
-public class GetWCServlet extends HttpServlet {
+@WebServlet("/SpeechServlet")
+public class SpeechServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
-		String longitude = request.getParameter("longitude");
-		String latitude = request.getParameter("latitude");
+		String npcID = request.getParameter("ID");
+		String status = request.getParameter("STATUS");
+
 		
-		GetFourSpotThreeHundred test = new GetFourSpotThreeHundred();
-		String rightTopLng = test.getRtLng(longitude, latitude);
-		String rightTopLat = test.getRtLat(longitude, latitude);
-		String leftBottomLng = test.getLbLng(longitude, latitude);
-		String leftBottomLat = test.getLbLat(longitude, latitude);
+		GetSpeech get = new GetSpeech();
 		
-		ShowWC showWC = new ShowWC();
-		
-		JSONArray near = new JSONArray();
+		JSONArray info = new JSONArray();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			near = showWC.show(leftBottomLng,leftBottomLat,rightTopLng,rightTopLat,longitude,latitude);	
+			info = get.showSpeech(npcID,status);	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +43,7 @@ public class GetWCServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		writer.println(near);	
-	}
+		writer.println(info);	
 	}
 
+}

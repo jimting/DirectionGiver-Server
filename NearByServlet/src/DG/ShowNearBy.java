@@ -10,7 +10,6 @@ import java.sql.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
 
 import com.google.gson.JsonArray;
 
@@ -18,17 +17,18 @@ import com.google.gson.JsonParser;
 
 public class ShowNearBy {
 	static Connection con = null;
-	static Connection con2 = null;
 	static Statement stmt = null;
 	static Statement stmt2 = null;
 	static Statement stmt3 = null;
 	static Statement stmt4 = null;
 	static Statement stmt5 = null;
+	static Statement stmt6 = null;
 	
 	static ResultSet rs = null;
 	static ResultSet rs2 = null;
 	static ResultSet rs3 = null;
 	static ResultSet rs4 = null;
+	static ResultSet rs5 = null;
 	static String comments = null;
 	static String time = null;
 	static String finalComments = null;
@@ -73,12 +73,13 @@ public class ShowNearBy {
 				jsonObject.put("WEBSITE", rs.getString("WEBSITE"));
 				jsonObject.put("jiaoDu", GetJiaoDu(lat,lng,Double.parseDouble(rs.getString("PY")),Double.parseDouble(rs.getString("PX"))));
 				jsonArray.put(jsonObject);
-				restaurantName = rs.getString("NAME");
+				/*restaurantName = rs.getString("NAME");
 				restaurantID = rs.getString("ID");
 				address = rs.getString("ADDRESS");
 				String placeID = getPlaceID(restaurantName);
 				getCommentsAndTime(placeID);
-				/*for(int i = 1; i<numCol + 1; i++)
+				
+				for(int i = 1; i<numCol + 1; i++)
 				{
 					String columnName = metadata.getColumnName(i);
 					int columnType = metadata.getColumnType(i);
@@ -93,14 +94,20 @@ public class ShowNearBy {
 					}
 				}
 				jsonObject.put("jiaoDu", GetJiaoDu(lat,lng,Double.parseDouble(rs.getString("PY")),Double.parseDouble(rs.getString("PX"))));
-				jsonArray.put(jsonObject);*/
+				jsonArray.put(jsonObject);
+				stmt6 = con.createStatement();
+				String ratingQuery = "SELECT * FROM `rating` WHERE RESTAURANT_ID=\""+ restaurantID +"\"";
+				System.out.println(ratingQuery);
+				rs5 = stmt6.executeQuery(ratingQuery);
+				if(rs5.next()){
+				jsonObject.put("RATING", rs5.getString("RESTAURANT_RATING"));
+				}*/
 			}
 		}
 		if(rs2 != null)
 		{
 			while(rs2.next())
 			{
-
 				System.out.println(rs2.getString("NAME"));
 				JSONObject jsonObject2 = new JSONObject();
 				jsonObject2.put("ID", rs2.getString("ID"));
@@ -113,6 +120,7 @@ public class ShowNearBy {
 				jsonObject2.put("PY", rs2.getString("PY"));
 				jsonObject2.put("TEL","");
 				jsonObject2.put("WEBSITE","");
+				jsonObject2.put("RATING","X");
 				jsonObject2.put("jiaoDu", GetJiaoDu(lat,lng,Double.parseDouble(rs2.getString("PY")),Double.parseDouble(rs2.getString("PX"))));
 				jsonArray.put(jsonObject2);
 			}
@@ -176,11 +184,14 @@ public class ShowNearBy {
 			System.out.println(status);
 			if(status.matches("OK"))
 			{	
-				  System.out.println(urlForPlaceID);
-				 JSONArray jsonArrTmp = jsonObjTotal.getJSONArray("results");
+				    System.out.println(urlForPlaceID);
+				    JSONArray jsonArrTmp = jsonObjTotal.getJSONArray("results");
 			        JSONObject jsonObj2 = jsonArrTmp.getJSONObject(0);
 			        placeID = jsonObj2.getString("place_id");
-			}else{
+			}else if(status.matches("ZERO_RESULTS")){
+				
+			}
+			else{
 				System.out.println("RETRY");
 				return getPlaceID(shopName);
 			}

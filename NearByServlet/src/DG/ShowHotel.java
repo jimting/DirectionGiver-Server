@@ -54,32 +54,6 @@ public class ShowHotel {
 				jsonArray.put(jsonObject);
 			}
 		}
-		/*if(rs2 != null)
-		{
-			ResultSetMetaData metadata2 = rs2.getMetaData();
-			int numCol = metadata2.getColumnCount();
-			
-			while(rs2.next())
-			{
-				JSONObject jsonObject = new JSONObject();
-				for(int i = 1; i<numCol + 1; i++)
-				{
-					String columnName = metadata2.getColumnName(i);
-					int columnType = metadata2.getColumnType(i);
-					
-					if(columnType == Types.VARCHAR)
-					{
-						jsonObject.put(columnName, rs2.getString(columnName));
-					}else if(columnType == Types.BIGINT){
-						jsonObject.put(columnName, rs2.getInt(columnName));
-					}else{
-						jsonObject.put(columnName,rs2.getObject(columnName));
-					}
-				}
-				jsonObject.put("jiaoDu", GetJiaoDu(lat,lng,Double.parseDouble(rs2.getString("py")),Double.parseDouble(rs.getString("px"))));
-				jsonArray.put(jsonObject);
-			}
-		}*/
 		return jsonArray;
 	}
 	public static double GetJiaoDu(double lat1, double lng1, double lat2, double lng2)

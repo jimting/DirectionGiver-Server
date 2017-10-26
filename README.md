@@ -79,6 +79,10 @@ Rating存取
 
 新增NPC資訊的資料夾
 
+2017/10/26第二次更新
+
+SpeechServlet取消接收STATSU參數，改為將該NPC的台詞全部送出而STATUS變更為台詞的段落
+
 ----------
 
 UpdateUserLineServlet

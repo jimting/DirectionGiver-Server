@@ -24,7 +24,6 @@ public class SpeechServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = response.getWriter();
 		String npcID = request.getParameter("ID");
-		String status = request.getParameter("STATUS");
 
 		
 		GetSpeech get = new GetSpeech();
@@ -32,7 +31,7 @@ public class SpeechServlet extends HttpServlet {
 		JSONArray info = new JSONArray();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			info = get.showSpeech(npcID,status);	
+			info = get.showSpeech(npcID);	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

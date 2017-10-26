@@ -13,7 +13,6 @@ public class ShowRestaurant
 	public JSONArray show(String minLongitude,String minLatitude,String maxLongitude,String maxLatitude,String longitude,String latitude) throws SQLException, JSONException
 	{
 		 con = DriverManager.getConnection("jdbc:mysql://localhost/keelungdg?useUnicode=true&characterEncoding=utf-8", "dguser", "ian1024");
-		//String result = "";
 		String query = "select * from restaurant where PY >'" + minLatitude + "'AND PY <'" + maxLatitude + "'AND PX >'" + minLongitude + "'AND PX <'" + maxLongitude + "'";
 		 stmt = con.createStatement();
 		 rs = stmt.executeQuery(query);

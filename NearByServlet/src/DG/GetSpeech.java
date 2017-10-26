@@ -10,10 +10,10 @@ public class GetSpeech {
 	static Connection con = null;
 	static Statement stmt = null;
 	static ResultSet rs = null;
-	public JSONArray showSpeech(String ID,String status) throws SQLException, JSONException, IOException
+	public JSONArray showSpeech(String ID) throws SQLException, JSONException, IOException
 	{
 		con = DriverManager.getConnection("jdbc:mysql://localhost/keelungdg?useUnicode=true&characterEncoding=utf-8", "dguser", "ian1024");
-		String query = "select * from `npc_speech` where npc_id='" + ID + "' AND speech_status='" + status + "'";
+		String query = "select * from `npc_speech` where npc_id='" + ID + "'";
 		stmt = con.createStatement();
 		rs = stmt.executeQuery(query);
 		return GetSpeech.convert(rs);

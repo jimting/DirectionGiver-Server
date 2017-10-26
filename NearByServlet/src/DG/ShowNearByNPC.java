@@ -39,6 +39,7 @@ public class ShowNearByNPC {
 				jsonObject.put("PX", rs.getString("npc_lng"));
 				jsonObject.put("PY", rs.getString("npc_lat"));
 				jsonObject.put("VOICE", rs.getString("npc_voice"));
+				jsonObject.put("NPC_INTRO", rs.getString("npc_intro"));
 				jsonObject.put("jiaoDu", GetJiaoDu(lat,lng,Double.parseDouble(rs.getString("npc_lat")),Double.parseDouble(rs.getString("npc_lng"))));
 				jsonArray.put(jsonObject);
 			}

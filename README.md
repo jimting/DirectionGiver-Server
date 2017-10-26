@@ -71,6 +71,14 @@ Rating存取
 
 請求GOOGLE PLACE API失敗時會自動重新丟請求
 
+2017/10/26更新
+
+新增NPC資訊與對話的推播Servlet
+
+新增餐廳單獨的推播Servlet
+
+新增NPC資訊的資料夾
+
 ----------
 
 UpdateUserLineServlet
